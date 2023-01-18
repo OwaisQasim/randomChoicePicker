@@ -12,7 +12,7 @@ textarea.addEventListener('keyup', (evnt) => {
             evnt.target.value = '';
         }, 10);
     }
-    console.log(evnt)
+    randomSelect()
 })
 
 
