@@ -11,8 +11,9 @@ textarea.addEventListener('keyup', (evnt) => {
         setTimeout(() => {
             evnt.target.value = '';
         }, 10);
+        randomSelect()
     }
-    randomSelect()
+
 })
 
 
@@ -31,16 +32,28 @@ function createTags(input) {
     });
 }
 
+function randomSelect() {
+    const times = 30; //It represent the number of times it's gonna highlight each one before it stops.
+    const interval = setInterval(() => {
+        const randomTag = pickRandomTag()
 
+        highlightTag(randomTag)
 
+        setTimeout(() => {
+            rmHighlightTag(randomTag)
+        }, 100);
+    }, 100);
+}
 
-// textarea.addEventListener('keyup', (evnt) => {
-//     if (evnt.key === 'Enter') {
-//         const value = textarea.value
-//         tags.innerHTML = value
-//         console.log(textarea)
-//         tags.classList.add('.tags')
-//         tags.appendChild(value)
+function pickRandomTag() {
+    const tags = document.querySelectorAll('.tag')
+    return tags[Math.floor(Math.random() * tags.length)]
+}
 
-//     }
-// })
+function highlightTag(tag) {
+    tag.classList.add('highlight')
+}
+
+function rmHighlightTag(tag) {
+    tag.classList.remove('highlight')
+}
